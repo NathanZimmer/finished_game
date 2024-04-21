@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjem2dfwjedac"]
+
+[ext_resource type="Script" path="res://scripts/menu_controller.gd" id="1_wksds"]
+[ext_resource type="Script" path="res://scripts/player_controller.gd" id="1_y2fp8"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_dgi16"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8l6i1"]
+
+[node name="Player" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+cull_mask = 524287
+fov = 90.0
+near = 0.01
+far = 400.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera3D"]
+offset = Vector2(50, 50)
+transform = Transform2D(1, 0, 0, 1, 50, 50)
+script = ExtResource("1_wksds")
+
+[node name="Label" type="Label" parent="Camera3D/CanvasLayer"]
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 141.0
+offset_bottom = 22.0
+text = "Mouse Sensitivity:"
+
+[node name="HSlider" type="HSlider" parent="Camera3D/CanvasLayer"]
+offset_top = 24.0
+offset_right = 200.0
+offset_bottom = 40.0
+min_value = 0.05
+max_value = 0.5
+step = 0.01
+value = 0.2
+
+[node name="Button" type="Button" parent="Camera3D/CanvasLayer"]
+offset_top = 56.0
+offset_right = 8.0
+offset_bottom = 64.0
+text = "Quit"
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_y2fp8")
+camera = NodePath("../Camera3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+visible = false
+mesh = SubResource("CapsuleMesh_dgi16")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_8l6i1")

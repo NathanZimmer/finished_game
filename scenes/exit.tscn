@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjf4j45cwbcp6"]
+
+[ext_resource type="Material" uid="uid://bpmgnplb724d7" path="res://textures_and_materials/placeholder.tres" id="1_7gya8"]
+[ext_resource type="PackedScene" uid="uid://dboh2alfetsxb" path="res://models/door.blend" id="1_hvbmh"]
+[ext_resource type="Material" uid="uid://tfxrp3aj42va" path="res://textures_and_materials/grey.tres" id="3_elxib"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_j0bmm"]
+data = PackedVector3Array(0.7305, 0, -2.456, 5, 0, -5, 5, 0, -2.456, 0.7305, 0, -2.456, 0.7305, 0, -5, 5, 0, -5, -5, 0, -2.456, -0.7307, 0, -5, -0.7307, 0, -2.456, -5, 0, -2.456, -5, 0, -5, -0.7307, 0, -5, -0.7307, 0, 4.9999, 0.7305, 0, -2.456, 0.7305, 0, 4.9999, -0.7307, 0, 4.9999, -0.7307, 0, -2.456, 0.7305, 0, -2.456, -5, 0, 4.9999, -0.7307, 0, -2.456, -0.7307, 0, 4.9999, -5, 0, 4.9999, -5, 0, -2.456, -0.7307, 0, -2.456, 0.7305, 0, 4.9999, 5, 0, -2.456, 5, 0, 4.9999, 0.7305, 0, 4.9999, 0.7305, 0, -2.456, 5, 0, -2.456)
+
+[node name="Exit" instance=ExtResource("1_hvbmh")]
+
+[node name="Wall" parent="." index="0"]
+material_override = ExtResource("1_7gya8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_j0bmm")
+
+[node name="Door" parent="." index="1"]
+material_override = ExtResource("3_elxib")
+
+[node name="Label3D" type="Label3D" parent="Door" index="0"]
+transform = Transform3D(-1, 0, 0, 0, -4.37114e-08, 1, 0, 1, 4.37114e-08, -0.708192, 0.0619882, 1.6956)
+modulate = Color(1, 0.121569, 0.25098, 1)
+text = "EXIT"
+font_size = 100
+outline_size = 0

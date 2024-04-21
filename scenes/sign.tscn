@@ -1,0 +1,84 @@
+[gd_scene load_steps=9 format=3 uid="uid://dnd18wklob1sr"]
+
+[ext_resource type="Script" path="res://scripts/sign_controller.gd" id="1_7e1en"]
+[ext_resource type="Material" uid="uid://7ep375gp7ja8" path="res://textures_and_materials/wood.tres" id="1_olyks"]
+[ext_resource type="Material" uid="uid://tfxrp3aj42va" path="res://textures_and_materials/grey.tres" id="2_lfo3k"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6krbi"]
+size = Vector3(0.7, 0.4, 0.02)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pfex3"]
+top_radius = 0.03
+bottom_radius = 0.03
+height = 1.05
+radial_segments = 16
+rings = 1
+cap_bottom = false
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_v075s"]
+top_radius = 0.1
+bottom_radius = 0.11
+height = 0.05
+radial_segments = 8
+rings = 5
+cap_bottom = false
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dwc0n"]
+size = Vector3(0.7, 1.45, 0.02)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_le0wh"]
+size = Vector3(10, 5, 5)
+
+[node name="Sign" type="StaticBody3D"]
+script = ExtResource("1_7e1en")
+
+[node name="Board" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+material_override = ExtResource("1_olyks")
+mesh = SubResource("BoxMesh_6krbi")
+
+[node name="Post" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.546164, 0)
+material_override = ExtResource("2_lfo3k")
+mesh = SubResource("CylinderMesh_pfex3")
+
+[node name="Base" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
+material_override = ExtResource("2_lfo3k")
+mesh = SubResource("CylinderMesh_v075s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.725, 0)
+shape = SubResource("BoxShape3D_dwc0n")
+
+[node name="TextFront" type="Label3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.309, 1.435, 0.011)
+modulate = Color(0.698039, 0.698039, 0.698039, 1)
+font_size = 100
+outline_size = 10
+horizontal_alignment = 0
+vertical_alignment = 0
+
+[node name="TextBack" type="Label3D" parent="."]
+transform = Transform3D(-0.2, 0, 3.01992e-08, 0, 0.2, 0, -3.01992e-08, 0, -0.2, 0.309, 1.435, -0.011)
+modulate = Color(0.698039, 0.698039, 0.698039, 1)
+font_size = 100
+outline_size = 10
+horizontal_alignment = 0
+vertical_alignment = 0
+
+[node name="FrontTrigger" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FrontTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.5)
+shape = SubResource("BoxShape3D_le0wh")
+
+[node name="BackTrigger" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5)
+shape = SubResource("BoxShape3D_le0wh")

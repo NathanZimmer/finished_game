@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dvry1phq8q1jf"]
+
+[resource]
+metallic_specular = 0.0
+emission = Color(0.780392, 0, 0, 1)
+emission_energy_multiplier = 0.0
+rim = 0.17
+backlight = Color(0.164706, 0, 0, 1)
+uv1_scale = Vector3(2, 2, 2)
+grow_amount = 1.761
